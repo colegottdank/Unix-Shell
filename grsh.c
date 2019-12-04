@@ -43,13 +43,6 @@ int main(int argc, char *argv[])
 
         line = retrieve_input(file);
         tokens = split_line_into_tokens(line);
-        if(strcmp(tokens[0], "cd") == 0)
-        {
-            if(chdir(tokens[1]) < 0)
-            {
-                print_error();
-            }
-        }
         parse(tokens);
 
         free(line);
@@ -109,7 +102,7 @@ void parse(char * tokens[])
     if(strncasecmp(tokens[0], "cd", 2) == 0)
     {
         cd(tokens[1], token_args);
-        print_pwd();
+        print_directory();
     }
     else if(strncasecmp(tokens[0], "cwd", 3) == 0)
     {
@@ -131,7 +124,7 @@ void cd(char *token, int token_args)
     }
     else
     {
-        if(chdir(token) < 0) 
+        if(chdir(token) != 0) 
         {
             print_error();
         }
