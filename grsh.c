@@ -198,9 +198,10 @@ void execute(char *tokens[])
         strcat(temp_path, paths[i]);
         strcat(temp_path, "/");
         strcat(temp_path, tokens[0]);
-
+        
         if(access(temp_path, X_OK) != 0)
         {
+            printf("why");
             print_error();
         }
         else
